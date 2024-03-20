@@ -68,9 +68,9 @@
     $(document).ready(function() {
         // Loop through each row except the header
         $('table tbody tr').each(function() {
-            var player1 = $(this).find('td:eq(1)').text().toLowerCase(); // Get text of player 1's choice
-            var player2 = $(this).find('td:eq(2)').text().toLowerCase(); // Get text of player 2's choice
-            var winner = determineWinner(player1, player2); // Determine the winner
+            let player1 = $(this).find('td:eq(1)').text().toLowerCase(); // Get text of player 1's choice
+            let player2 = $(this).find('td:eq(2)').text().toLowerCase(); // Get text of player 2's choice
+            let winner = determineWinner(player1, player2); // Determine the winner
             if (winner === 1) {
                 $(this).find('td:eq(1)').addClass('font-weight-bold'); // Highlight player 1's choice
             } else if (winner === 2) {
