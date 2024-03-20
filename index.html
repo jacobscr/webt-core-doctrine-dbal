@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Prototype</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="mt-3">Rock Paper Scissors Tournament</h1>
+    <p>Date: March 20, 2024</p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th>Round</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+                <th>Date & Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Rock</td>
+                <td>Paper</td>
+                <td>March 20, 2024 10:00 AM</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Scissors</td>
+                <td>Rock</td>
+                <td>March 20, 2024 10:05 AM</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Paper</td>
+                <td>Scissors</td>
+                <td>March 20, 2024 10:10 AM</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Rock</td>
+                <td>Paper</td>
+                <td>March 20, 2024 10:15 AM</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Scissors</td>
+                <td>Paper</td>
+                <td>March 20, 2024 10:20 AM</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Loop through each row except the header
+        $('table tbody tr').each(function() {
+            var player1 = $(this).find('td:eq(1)').text().toLowerCase(); // Get text of player 1's choice
+            var player2 = $(this).find('td:eq(2)').text().toLowerCase(); // Get text of player 2's choice
+            var winner = determineWinner(player1, player2); // Determine the winner
+            if (winner === 1) {
+                $(this).find('td:eq(1)').addClass('font-weight-bold'); // Highlight player 1's choice
+            } else if (winner === 2) {
+                $(this).find('td:eq(2)').addClass('font-weight-bold'); // Highlight player 2's choice
+            }
+        });
+
+        // Function to determine the winner based on the choices
+        function determineWinner(choice1, choice2) {
+            if (choice1 === choice2) {
+                return 0; // Draw
+            } else if (
+                (choice1 === 'rock' && choice2 === 'scissors') ||
+                (choice1 === 'paper' && choice2 === 'rock') ||
+                (choice1 === 'scissors' && choice2 === 'paper')
+            ) {
+                return 1; // Player 1 wins
+            } else {
+                return 2; // Player 2 wins
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
