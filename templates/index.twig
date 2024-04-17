@@ -7,61 +7,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    {% include 'navbar.twig' %}
 
-<div class="container">
-    <h1 class="mt-3">Rock Paper Scissors Tournament</h1>
-    <p>Date: March 20, 2024</p>
+    {% block content %}
+        {% include 'table.twig' %}
+    {% endblock %}
 
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead class="thead-light">
-            <tr>
-                <th>Round</th>
-                <th>Player 1</th>
-                <th>Player 2</th>
-                <th>Date & Time</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for row in results %}
-                <tr class="{{ 'winner' in row }}">
-                    <td>{{ row.roundNumber }}</td>
-                    <td>{{ row.player1Pick }}</td>
-                    <td>{{ row.player2Pick }}</td>
-                    <td>{{ row.roundDate }}</td>
-                </tr>
-            {% else %}
-                <tr><td colspan="4">0 results</td></tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('table tbody tr').each(function() {
-            let player1 = $(this).find('td:eq(1)').text().toLowerCase();
-            let player2 = $(this).find('td:eq(2)').text().toLowerCase();
-            let winner = determineWinner(player1, player2);
-            if (winner === 1) {
-                $(this).find('td:eq(1)').addClass('font-weight-bold');
-            } else if (winner === 2) {
-                $(this).find('td:eq(2)').addClass('font-weight-bold');
-            }
-        });
-
-        function determineWinner(choice1, choice2) {
-            if (choice1 === choice2) return 0;
-            return (choice1 === 'rock' && choice2 === 'scissors') ||
-            (choice1 === 'paper' && choice2 === 'rock') ||
-            (choice1 === 'scissors' && choice2 === 'paper') ? 1 : 2;
-        }
-    });
-</script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

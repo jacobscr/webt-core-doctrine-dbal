@@ -23,3 +23,5 @@ $result = $queryBuilder->fetchAllAssociative();
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
 echo $twig->render('index.twig', ['results' => $result]);
+
+
