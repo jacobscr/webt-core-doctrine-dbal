@@ -1,0 +1,19 @@
+{
+    "name": "jacob/webt-core-doctrine-dbal",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Jacob\\WebtCoreDoctrineDbal\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jacob Schrott",
+            "email": "0062@htl.rennweg.at"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.9",
+        "doctrine/dbal": "^4.0"
+    }
+}
