@@ -1,28 +1,25 @@
 <?php
 require_once './vendor/autoload.php';
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "rockpaperscissors";
+use Doctrine\DBAL\DriverManager;
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$connectionParams = [
+    'dbname' => 'rockpaperscissors',
+    'user' => 'root',
+    'password' => '',
+    'host' => 'localhost',
+    'driver' => 'pdo_mysql',
+];
+$conn = DriverManager::getConnection($connectionParams);
 
-$sql = "SELECT * FROM GameRound";
-$result = $conn->query($sql);
+$queryBuilder = $conn->createQueryBuilder();
 
-$rows = [];
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $rows[] = $row;
-    }
-}
-$conn->close();
+$queryBuilder
+    ->select('*')
+    ->from('GameRound');
+
+$result = $queryBuilder->fetchAllAssociative();
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
-echo $twig->render('index.twig', ['results' => $rows]);
+echo $twig->render('index.twig', ['results' => $result]);
