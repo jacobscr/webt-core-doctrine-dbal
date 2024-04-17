@@ -22,6 +22,7 @@ $result = $queryBuilder->fetchAllAssociative();
 
 $loader = new \Twig\Loader\FilesystemLoader('templates');
 $twig = new \Twig\Environment($loader);
-echo $twig->render('index.twig', ['results' => $result]);
 
+$page = $_GET['page'] ?? 'table'; // Default page is 'table'
 
+echo $twig->render('index.twig', ['results' => $result, 'page' => $page]);
