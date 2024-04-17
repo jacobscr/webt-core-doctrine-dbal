@@ -12,6 +12,8 @@
 {% block content %}
     {% if page == 'insert' %}
         {% include 'insert.twig' %}
+    {% elseif page == 'delete' %}
+        {% include 'delete.twig' %}
     {% else %}
         {% include 'table.twig' %}
     {% endif %}

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-light">
+            <tr>
+                <th>Round</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+                <th>Date & Time</th>
+                <th>Action</th> <!-- Zusätzliche Spalte für die Aktionen -->
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in results %}
+                <tr class="{{ 'winner' in row }}">
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.player1Pick }}</td>
+                    <td>{{ row.player2Pick }}</td>
+                    <td>{{ row.roundDate }}</td>
+                    <td>
+                        <form action="delete.php" method="post">
+                            <input type="hidden" name="id" value="{{ row.id }}">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr><td colspan="5">0 results</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
