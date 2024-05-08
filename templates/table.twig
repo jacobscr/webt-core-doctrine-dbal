@@ -5,7 +5,9 @@
             <tr>
                 <th>Round</th>
                 <th>Player 1</th>
+                <th>Player 1 Pick</th>
                 <th>Player 2</th>
+                <th>Player 2 Pick</th>
                 <th>Date & Time</th>
             </tr>
             </thead>
@@ -13,7 +15,9 @@
             {% for row in results %}
                 <tr class="{{ 'winner' in row }}">
                     <td>{{ row.id }}</td>
+                    <td>{{ row.player1 }}</td>
                     <td>{{ row.player1Pick }}</td>
+                    <td>{{ row.player2 }}</td>
                     <td>{{ row.player2Pick }}</td>
                     <td>{{ row.roundDate }}</td>
                 </tr>

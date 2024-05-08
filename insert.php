@@ -13,7 +13,9 @@ $connectionParams = [
 $conn = DriverManager::getConnection($connectionParams);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $player1Name = $_POST['player1Name'];
     $player1Pick = $_POST['player1Pick'];
+    $player2Name = $_POST['player2Name'];
     $player2Pick = $_POST['player2Pick'];
     $roundDate = $_POST['roundDate'];  // Assumes datetime-local input provides a valid MySQL datetime format
 
@@ -21,11 +23,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $queryBuilder
         ->insert('GameRound')
+        ->setValue('player1', ':player1Name')
         ->setValue('player1Pick', ':player1Pick')
+        ->setValue('player2', ':player2Name')
         ->setValue('player2Pick', ':player2Pick')
         ->setValue('roundDate', ':roundDate')
         ->setParameters([
+            'player1Name' => $player1Name,
             'player1Pick' => $player1Pick,
+            'player2Name' => $player2Name,
             'player2Pick' => $player2Pick,
             'roundDate' => $roundDate,
         ])
